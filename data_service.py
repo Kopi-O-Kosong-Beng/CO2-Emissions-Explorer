@@ -3,6 +3,8 @@ Data service module for fitting state‐specific linear regression models
 and predicting CO₂ per capita using NumPy.
 """
 
+from pathlib import Path
+
 import pandas as pd
 import numpy as np
 
@@ -11,13 +13,16 @@ import numpy as np
 # ────────────────────────────────────────────────────────
 _cached_df = None
 
+# Resolve the dataset relative to this file, not the working directory, so the
+# app and the export script both load it no matter where they are launched from.
+DATA_PATH = Path(__file__).resolve().parent / "assets" / "All main data (1998 to 2023).xlsx"
+
 
 def load_merged_data() -> pd.DataFrame:
     """Load and cache the merged CO₂-per-capita dataset from Excel."""
     global _cached_df
     if _cached_df is None:
-        path = "assets/All main data (1998 to 2023).xlsx"
-        _cached_df = pd.read_excel(path, sheet_name="merged", engine="openpyxl")
+        _cached_df = pd.read_excel(DATA_PATH, sheet_name="merged", engine="openpyxl")
     return _cached_df
 
 
@@ -83,6 +88,46 @@ def fit_state_models() -> dict[str, dict[str, float]]:
 
     _fitted_models = models
     return models
+
+
+def feature_bounds(state_code: str) -> dict[str, dict[str, float]]:
+    """
+    Observed range of each predictor for one state.
+
+    A linear model carries no information outside the range it was fitted on,
+    so the input controls in both front ends stop where the observations stop
+    rather than at an arbitrary round number.
+
+    Returns:
+        {feature_name: {"min": float, "max": float, "latest": float}}
+    """
+    state = state_code.upper()
+    df = load_merged_data()
+    subset = df[df["State"] == state].dropna(subset=_FEATURES + ["co2 per capita"])
+
+    if subset.empty:
+        raise ValueError(f"No observations for state {state}.")
+
+    latest_row = subset.loc[subset["Year"].idxmax()]
+
+    bounds: dict[str, dict[str, float]] = {}
+    for feature in _FEATURES:
+        column = subset[feature].astype(float)
+        bounds[feature] = {
+            "min": float(column.min()),
+            "max": float(column.max()),
+            "latest": float(latest_row[feature]),
+        }
+    return bounds
+
+
+def latest_observation(state_code: str) -> tuple[int, float]:
+    """The most recent year on record for a state and its CO₂ per capita."""
+    state = state_code.upper()
+    df = load_merged_data()
+    subset = df[df["State"] == state].dropna(subset=["co2 per capita"])
+    row = subset.loc[subset["Year"].idxmax()]
+    return int(row["Year"]), float(row["co2 per capita"])
 
 
 # ────────────────────────────────────────────────────────

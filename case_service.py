@@ -2,10 +2,16 @@
 Provides functions to load and query the merged CO₂-per-capita dataset.
 """
 
+from pathlib import Path
+
 import pandas as pd
 
 # Module‐level cache for the merged DataFrame
 _cached_df = None
+
+# Resolve the dataset relative to this file so the page loads regardless of the
+# working directory Streamlit happens to be started from.
+DATA_PATH = Path(__file__).resolve().parent / "assets" / "All main data (1998 to 2023).xlsx"
 
 
 def load_merged_data() -> pd.DataFrame:
@@ -25,9 +31,8 @@ def load_merged_data() -> pd.DataFrame:
     global _cached_df
 
     if _cached_df is None:
-        path = "assets/All main data (1998 to 2023).xlsx"
         # engine="openpyxl" ensures pandas uses the correct reader
-        _cached_df = pd.read_excel(path, sheet_name="merged", engine="openpyxl")
+        _cached_df = pd.read_excel(DATA_PATH, sheet_name="merged", engine="openpyxl")
     return _cached_df
 
 
