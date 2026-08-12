@@ -6,7 +6,7 @@
 ![Streamlit](https://img.shields.io/badge/Streamlit-app-ff4b4b?logo=streamlit&logoColor=white)
 ![Tests](https://img.shields.io/badge/tests-28%20passing-brightgreen)
 
-[Project video](https://youtu.be/_4QkfWFUnI4) · [Full case study](https://zhifeng-portfolio.vercel.app/projects/co2-modeling)
+**[Open the live explorer](https://co2-emissions-explorer.vercel.app)** · [Project video](https://youtu.be/_4QkfWFUnI4) · [Full case study](https://zhifeng-portfolio.vercel.app/projects/co2-modeling)
 
 ## The question
 
@@ -128,7 +128,9 @@ Both run on every push through [GitHub Actions](.github/workflows/tests.yml), ag
 
 ## Deploying
 
-**The static explorer, on Vercel.** Import the repository at [vercel.com/new](https://vercel.com/new). `vercel.json` already sets the framework to none, the build command to none and the output directory to `web/`, so no dashboard configuration is needed.
+**The static explorer, on Vercel.** Live at [co2-emissions-explorer.vercel.app](https://co2-emissions-explorer.vercel.app), redeployed automatically on every push to `main`. `vercel.json` sets the framework to none, the build command to none and the output directory to `web/`, so there is nothing to configure in the dashboard.
+
+The page reads `?theme=light` or `?theme=dark` and accepts a `{type: "set-theme", theme}` postMessage, so it can be embedded in an iframe that follows the host page's theme. Adding `?embed=1` hides its own header and footer.
 
 **The Streamlit app, on Streamlit Community Cloud.** Streamlit needs a long-running server holding a WebSocket per visitor, which Vercel's serverless model cannot provide, so it is hosted separately. At [share.streamlit.io](https://share.streamlit.io), point a new app at this repository with `Home.py` as the entry point. It is free for public repositories.
 
