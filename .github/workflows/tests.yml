@@ -1,0 +1,132 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tests-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  pytest:
+    name: pytest on Python ${{ matrix.python-version }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.10', '3.11', '3.12']
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+          cache-dependency-path: |
+            requirements.txt
+            requirements-dev.txt
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-dev.txt
+
+      - name: Run the test suite
+        run: python -m pytest -q
+
+  streamlit-smoke:
+    name: streamlit app boots
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Install runtime dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Start the app and wait for it to answer
+        run: |
+          streamlit run Home.py \
+            --server.headless true \
+            --server.port 8501 \
+            --server.address 127.0.0.1 > streamlit.log 2>&1 &
+          for attempt in $(seq 1 30); do
+            if curl -sf -o /dev/null http://127.0.0.1:8501/healthz; then
+              echo "app is serving"
+              exit 0
+            fi
+            sleep 2
+          done
+          echo "app did not come up:"
+          cat streamlit.log
+          exit 1
+
+      - name: Import every page module
+        run: |
+          python - <<'PY'
+          import runpy, sys
+          from unittest import mock
+
+          # Pages call st.* at import time, so the Streamlit API is stubbed out.
+          # This checks the modules parse, import and reach every statement
+          # without needing a browser session.
+          import streamlit
+
+          for page in [
+              "pages/02_Case_Studies.py",
+              "pages/03_Prediction.py",
+              "pages/04_HASS_Reflection.py",
+          ]:
+              with mock.patch.object(streamlit, "set_page_config"):
+                  try:
+                      runpy.run_path(page, run_name="__page__")
+                  except Exception as error:
+                      print(f"{page} failed: {type(error).__name__}: {error}")
+                      sys.exit(1)
+              print(f"{page} ok")
+          PY
+
+  web-bundle:
+    name: static bundle
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Install runtime dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Regenerate the export from the source panel
+        run: python scripts/export_web_data.py
+
+      - name: Check the static bundle
+        run: python scripts/check_web_bundle.py
