@@ -1,0 +1,12 @@
+# Streamlit theme, matched to the static explorer under web/ and to the
+# portfolio both of them are presented from.
+[theme]
+base = "light"
+primaryColor = "#4f46e5"
+backgroundColor = "#f6f4ef"
+secondaryBackgroundColor = "#fdfcf9"
+textColor = "#1a1815"
+font = "sans serif"
+
+[browser]
+gatherUsageStats = false

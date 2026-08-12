@@ -21,8 +21,8 @@ with col1:
     st.markdown(
         """
         > **Environmental justice** is about ensuring that all people, regardless of race, color, national origin, or income, have equal protection from environmental harms and equal access to environmental benefits.
-        > 
-        > — Dr. Robert Bullard, “Father of Environmental Justice”
+        >
+        > Dr. Robert Bullard, widely called the father of environmental justice
         """
     )
 with col2:
@@ -30,9 +30,9 @@ with col2:
     st.markdown(
         """
         > “The ones who walk away from Omelas... They leave Omelas, they walk ahead into the darkness, and they do not come back.”
-        > 
-        > — Ursula K. Le Guin
-        > 
+        >
+        > Ursula K. Le Guin
+        >
         > How do we confront the uncomfortable truth that our prosperity may come at others’ expense?
         """
     )
