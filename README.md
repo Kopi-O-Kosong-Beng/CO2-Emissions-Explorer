@@ -60,8 +60,8 @@ The repository ships the study twice, and both read the same fitted coefficients
 ## Quick start
 
 ```bash
-git clone https://github.com/Kopi-O-Kosong-Beng/DTP-MU-Project.git
-cd DTP-MU-Project
+git clone https://github.com/Kopi-O-Kosong-Beng/CO2-Emissions-Explorer.git
+cd CO2-Emissions-Explorer
 
 python -m venv .venv
 # Windows:
