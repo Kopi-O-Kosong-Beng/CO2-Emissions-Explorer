@@ -6,7 +6,7 @@
 ![Streamlit](https://img.shields.io/badge/Streamlit-app-ff4b4b?logo=streamlit&logoColor=white)
 ![Tests](https://img.shields.io/badge/tests-28%20passing-brightgreen)
 
-**[Open the live explorer](https://co2-emissions-explorer.vercel.app)** · [Project video](https://youtu.be/_4QkfWFUnI4) · [Full case study](https://zhifeng-portfolio.vercel.app/projects/co2-modeling)
+**[Open the live explorer](https://co2-emissions-explorer.vercel.app)** · [Project video](https://youtu.be/_4QkfWFUnI4) · [Full case study](https://zhifengportfolio.vercel.app/projects/co2-modeling)
 
 ## The question
 
@@ -136,7 +136,7 @@ Streamlit needs a long-running server holding a WebSocket per visitor, which Ver
 
 ### Embedding the predictor
 
-The explorer is designed to be framed inside a host page, which is how it appears on the [case study](https://zhifeng-portfolio.vercel.app/projects/co2-modeling):
+The explorer is designed to be framed inside a host page, which is how it appears on the [case study](https://zhifengportfolio.vercel.app/projects/co2-modeling):
 
 | Parameter | Effect |
 |---|---|
@@ -158,4 +158,4 @@ Built for SUTD's Design Thinking Project III by a five-person team.
 
 I was one of two core modellers and the developer of this app. Together with my teammate I gathered the dataset and built the regression models in Excel. He wrote the core maths-algorithm code; I did the final checking and integrated the models into the app. I also originated the evaluation methodology (adjusted R² and the RMSE-variant scoring), wrote the report, and led the model-strengths analysis in the final presentation.
 
-The static explorer, the export pipeline, the test suite and the numerical work described above are mine. Full role breakdown on the [case study page](https://zhifeng-portfolio.vercel.app/projects/co2-modeling).
+The static explorer, the export pipeline, the test suite and the numerical work described above are mine. Full role breakdown on the [case study page](https://zhifengportfolio.vercel.app/projects/co2-modeling).
