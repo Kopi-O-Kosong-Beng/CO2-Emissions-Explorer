@@ -1,3 +1,7 @@
 .venv/
 __pycache__/
 *.pyc
+.pytest_cache/
+.vercel/
+.DS_Store
+Thumbs.db
