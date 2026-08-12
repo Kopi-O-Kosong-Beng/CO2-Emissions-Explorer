@@ -1,0 +1,1530 @@
+{
+ "meta": {
+  "source": "assets/All main data (1998 to 2023).xlsx (sheet: merged)",
+  "generated_by": "scripts/export_web_data.py",
+  "observations": 1300,
+  "states": 50,
+  "year_range": [
+   1998,
+   2023
+  ],
+  "target": "co2 per capita",
+  "target_unit": "tonnes CO2 per person per year",
+  "features": [
+   "renewable energy",
+   "Coal Electricity Consumption",
+   "Natural Gas Electricity Consumption",
+   "PCE per capita",
+   "Estimated Urban Population"
+  ],
+  "feature_meta": {
+   "renewable energy": {
+    "label": "Renewable energy consumption",
+    "short": "Renewables",
+    "unit": "billion Btu per year",
+    "unit_short": "bn Btu"
+   },
+   "Coal Electricity Consumption": {
+    "label": "Coal consumed for electricity",
+    "short": "Coal",
+    "unit": "short tons per year",
+    "unit_short": "short tons"
+   },
+   "Natural Gas Electricity Consumption": {
+    "label": "Natural gas consumed for electricity",
+    "short": "Natural gas",
+    "unit": "thousand cubic feet per year",
+    "unit_short": "k cu ft"
+   },
+   "PCE per capita": {
+    "label": "Personal consumption expenditure",
+    "short": "Consumer spending",
+    "unit": "USD per person per year",
+    "unit_short": "USD"
+   },
+   "Estimated Urban Population": {
+    "label": "Urban population",
+    "short": "Urban population",
+    "unit": "people",
+    "unit_short": "people"
+   }
+  }
+ },
+ "national": {
+  "years": [
+   1998,
+   1999,
+   2000,
+   2001,
+   2002,
+   2003,
+   2004,
+   2005,
+   2006,
+   2007,
+   2008,
+   2009,
+   2010,
+   2011,
+   2012,
+   2013,
+   2014,
+   2015,
+   2016,
+   2017,
+   2018,
+   2019,
+   2020,
+   2021,
+   2022,
+   2023
+  ],
+  "median": [
+   19.700000000000003,
+   20.0,
+   20.5,
+   19.950000000000003,
+   19.65,
+   19.95,
+   20.2,
+   20.6,
+   19.6,
+   19.700000000000003,
+   19.0,
+   17.549999999999997,
+   18.05,
+   17.25,
+   15.95,
+   17.1,
+   17.4,
+   16.5,
+   15.95,
+   15.8,
+   16.450000000000003,
+   15.9,
+   13.5,
+   14.5,
+   14.75,
+   13.95
+  ],
+  "p25": [
+   15.0,
+   14.95,
+   15.0,
+   14.899999999999999,
+   14.95,
+   16.4,
+   17.025,
+   16.474999999999998,
+   15.100000000000001,
+   15.25,
+   14.3,
+   13.075,
+   13.1,
+   12.45,
+   11.725,
+   11.775,
+   11.925,
+   11.875,
+   11.875,
+   11.325000000000001,
+   11.425,
+   11.225,
+   9.95,
+   10.475,
+   10.725,
+   10.35
+  ],
+  "p75": [
+   27.925,
+   27.7,
+   28.725,
+   27.375,
+   27.725,
+   28.25,
+   27.725,
+   27.275,
+   27.075,
+   28.0,
+   26.575,
+   25.65,
+   25.925,
+   26.45,
+   25.125,
+   24.875,
+   24.425,
+   24.025000000000002,
+   23.2,
+   23.099999999999998,
+   23.275,
+   22.65,
+   20.775000000000002,
+   21.575000000000003,
+   21.9,
+   20.8
+  ]
+ },
+ "spread": {
+  "year": 2023,
+  "values": [
+   {
+    "state": "MD",
+    "name": "Maryland",
+    "value": 7.8
+   },
+   {
+    "state": "MA",
+    "name": "Massachusetts",
+    "value": 8.0
+   },
+   {
+    "state": "CA",
+    "name": "California",
+    "value": 8.3
+   },
+   {
+    "state": "NY",
+    "name": "New York",
+    "value": 8.4
+   },
+   {
+    "state": "VT",
+    "name": "Vermont",
+    "value": 8.4
+   },
+   {
+    "state": "OR",
+    "name": "Oregon",
+    "value": 9.1
+   },
+   {
+    "state": "NJ",
+    "name": "New Jersey",
+    "value": 9.7
+   },
+   {
+    "state": "NH",
+    "name": "New Hampshire",
+    "value": 9.7
+   },
+   {
+    "state": "WA",
+    "name": "Washington",
+    "value": 9.7
+   },
+   {
+    "state": "CT",
+    "name": "Connecticut",
+    "value": 9.9
+   },
+   {
+    "state": "FL",
+    "name": "Florida",
+    "value": 10.0
+   },
+   {
+    "state": "RI",
+    "name": "Rhode Island",
+    "value": 10.0
+   },
+   {
+    "state": "NC",
+    "name": "North Carolina",
+    "value": 10.2
+   },
+   {
+    "state": "ID",
+    "name": "Idaho",
+    "value": 10.8
+   },
+   {
+    "state": "VA",
+    "name": "Virginia",
+    "value": 10.8
+   },
+   {
+    "state": "AZ",
+    "name": "Arizona",
+    "value": 11.1
+   },
+   {
+    "state": "ME",
+    "name": "Maine",
+    "value": 11.1
+   },
+   {
+    "state": "GA",
+    "name": "Georgia",
+    "value": 11.4
+   },
+   {
+    "state": "DE",
+    "name": "Delaware",
+    "value": 11.7
+   },
+   {
+    "state": "NV",
+    "name": "Nevada",
+    "value": 12.2
+   },
+   {
+    "state": "TN",
+    "name": "Tennessee",
+    "value": 12.4
+   },
+   {
+    "state": "HI",
+    "name": "Hawaii",
+    "value": 12.5
+   },
+   {
+    "state": "SC",
+    "name": "South Carolina",
+    "value": 12.8
+   },
+   {
+    "state": "IL",
+    "name": "Illinois",
+    "value": 13.2
+   },
+   {
+    "state": "CO",
+    "name": "Colorado",
+    "value": 13.9
+   },
+   {
+    "state": "MN",
+    "name": "Minnesota",
+    "value": 14.0
+   },
+   {
+    "state": "MI",
+    "name": "Michigan",
+    "value": 14.0
+   },
+   {
+    "state": "WI",
+    "name": "Wisconsin",
+    "value": 14.5
+   },
+   {
+    "state": "PA",
+    "name": "Pennsylvania",
+    "value": 15.4
+   },
+   {
+    "state": "OH",
+    "name": "Ohio",
+    "value": 15.6
+   },
+   {
+    "state": "UT",
+    "name": "Utah",
+    "value": 16.0
+   },
+   {
+    "state": "MO",
+    "name": "Missouri",
+    "value": 16.4
+   },
+   {
+    "state": "SD",
+    "name": "South Dakota",
+    "value": 16.4
+   },
+   {
+    "state": "KS",
+    "name": "Kansas",
+    "value": 19.6
+   },
+   {
+    "state": "AR",
+    "name": "Arkansas",
+    "value": 19.7
+   },
+   {
+    "state": "AL",
+    "name": "Alabama",
+    "value": 19.7
+   },
+   {
+    "state": "NM",
+    "name": "New Mexico",
+    "value": 19.9
+   },
+   {
+    "state": "IA",
+    "name": "Iowa",
+    "value": 21.1
+   },
+   {
+    "state": "OK",
+    "name": "Oklahoma",
+    "value": 21.4
+   },
+   {
+    "state": "MS",
+    "name": "Mississippi",
+    "value": 21.7
+   },
+   {
+    "state": "TX",
+    "name": "Texas",
+    "value": 21.8
+   },
+   {
+    "state": "IN",
+    "name": "Indiana",
+    "value": 22.4
+   },
+   {
+    "state": "NE",
+    "name": "Nebraska",
+    "value": 22.9
+   },
+   {
+    "state": "KY",
+    "name": "Kentucky",
+    "value": 23.0
+   },
+   {
+    "state": "MT",
+    "name": "Montana",
+    "value": 26.0
+   },
+   {
+    "state": "LA",
+    "name": "Louisiana",
+    "value": 40.1
+   },
+   {
+    "state": "WV",
+    "name": "West Virginia",
+    "value": 42.1
+   },
+   {
+    "state": "AK",
+    "name": "Alaska",
+    "value": 58.6
+   },
+   {
+    "state": "ND",
+    "name": "North Dakota",
+    "value": 68.8
+   },
+   {
+    "state": "WY",
+    "name": "Wyoming",
+    "value": 92.9
+   }
+  ]
+ },
+ "cases": {
+  "WY": {
+   "code": "WY",
+   "name": "Wyoming",
+   "rank": 1,
+   "years": [
+    1998,
+    1999,
+    2000,
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023
+   ],
+   "co2": [
+    130.4,
+    127.2,
+    128.4,
+    128.9,
+    125.0,
+    128.2,
+    126.6,
+    124.0,
+    123.4,
+    125.0,
+    123.2,
+    114.5,
+    116.3,
+    113.7,
+    115.8,
+    118.4,
+    113.1,
+    109.2,
+    104.6,
+    108.2,
+    110.2,
+    101.7,
+    96.1,
+    94.0,
+    96.7,
+    92.9
+   ],
+   "features": {
+    "renewable energy": [
+     6611.0,
+     6108.0,
+     6478.0,
+     6047.0,
+     5307.0,
+     5192.0,
+     6050.0,
+     9237.0,
+     9136.0,
+     9344.0,
+     10882.0,
+     14755.0,
+     18850.0,
+     24985.0,
+     23296.0,
+     23248.0,
+     23775.0,
+     24975.0,
+     27129.0,
+     27704.0,
+     26134.0,
+     27656.0,
+     28933.0,
+     37734.0,
+     42079.0,
+     38474.0
+    ],
+    "Coal Electricity Consumption": [
+     26831408.0,
+     25794566.0,
+     26521379.0,
+     26460129.0,
+     26001210.0,
+     25956456.0,
+     26473400.84,
+     26130740.42,
+     26215370.04,
+     26628197.0,
+     26928207.0,
+     25542392.0,
+     26145485.0,
+     25313141.0,
+     26449385.0,
+     28111658.0,
+     26492657.0,
+     26485958.0,
+     24523718.0,
+     24769528.0,
+     24468498.0,
+     21900932.0,
+     20935699.0,
+     20096148.0,
+     20938644.0,
+     20001974.0
+    ],
+    "Natural Gas Electricity Consumption": [
+     4052911.0,
+     4754824.0,
+     5226525.0,
+     6829479.0,
+     7561834.0,
+     2963244.0,
+     771921.56,
+     5687160.92,
+     3158918.02,
+     4396066.0,
+     3318179.0,
+     3258828.0,
+     2834666.0,
+     2928825.0,
+     3335259.0,
+     3324004.0,
+     3712207.0,
+     4858736.0,
+     5483225.0,
+     5568649.0,
+     6349608.0,
+     7175436.0,
+     10413203.0,
+     12078016.0,
+     14242183.0,
+     18693785.0
+    ],
+    "PCE per capita": [
+     20184.0,
+     21566.0,
+     22979.0,
+     23867.0,
+     24616.0,
+     26018.0,
+     27757.0,
+     29663.0,
+     31550.0,
+     33548.0,
+     34161.0,
+     33487.0,
+     34006.0,
+     35846.0,
+     36879.0,
+     37722.0,
+     39563.0,
+     39651.0,
+     40450.0,
+     41472.0,
+     42890.0,
+     43916.0,
+     44408.0,
+     49298.0,
+     53869.0,
+     56941.0
+    ],
+    "Estimated Urban Population": [
+     322110.1949999999,
+     321812.942,
+     321789.3,
+     322021.7069999999,
+     325511.067,
+     327747.903,
+     331428.006,
+     334716.2069999999,
+     340256.2169999999,
+     348204.276,
+     355473.993,
+     364463.0009999999,
+     365590.2756000001,
+     367507.1716000001,
+     373442.4256,
+     377304.7120000001,
+     377653.7684000001,
+     379745.5164,
+     379003.3668,
+     375604.1144000001,
+     374995.3704000001,
+     375683.1216,
+     358264.7473090972,
+     359477.1942841393,
+     360929.6499442664,
+     362845.378182581
+    ]
+   },
+   "model": {
+    "intercept": 130.59942724840343,
+    "coefficients": {
+     "renewable energy": -0.00021093803738181594,
+     "Coal Electricity Consumption": 2.983265817654058e-06,
+     "Natural Gas Electricity Consumption": -3.264087952226342e-07,
+     "PCE per capita": 0.00013438668758717192,
+     "Estimated Urban Population": -0.00025169423445630605
+    },
+    "significant": [
+     "Coal Electricity Consumption",
+     "Estimated Urban Population"
+    ]
+   },
+   "fit": {
+    "n": 26,
+    "dof": 20,
+    "r_squared": 0.9838346774440037,
+    "adj_r_squared": 0.9797933468050046,
+    "residual_std_error": 1.6853129723007678,
+    "condition_number": 1190963007.8564818,
+    "terms": {
+     "intercept": {
+      "coefficient": 130.59942724840343,
+      "std_error": 15.251953910268666,
+      "t": 8.562799757772341,
+      "p": 4.014331079818542e-08,
+      "significant": true
+     },
+     "renewable energy": {
+      "coefficient": -0.00021093803738181594,
+      "std_error": 0.00011839470520989824,
+      "t": -1.781650936229374,
+      "p": 0.08999820185620402,
+      "significant": false
+     },
+     "Coal Electricity Consumption": {
+      "coefficient": 2.983265817654058e-06,
+      "std_error": 3.725400959941921e-07,
+      "t": 8.007905322761733,
+      "p": 1.1480070203401438e-07,
+      "significant": true
+     },
+     "Natural Gas Electricity Consumption": {
+      "coefficient": -3.264087952226342e-07,
+      "std_error": 2.3163066250850083e-07,
+      "t": -1.4091778337449388,
+      "p": 0.1741419238734765,
+      "significant": false
+     },
+     "PCE per capita": {
+      "coefficient": 0.00013438668758717192,
+      "std_error": 0.00015311682154384079,
+      "t": 0.8776742243744525,
+      "p": 0.3905422943353525,
+      "significant": false
+     },
+     "Estimated Urban Population": {
+      "coefficient": -0.00025169423445630605,
+      "std_error": 5.54322602552138e-05,
+      "t": -4.540573184234039,
+      "p": 0.00019904673842902255,
+      "significant": true
+     }
+    }
+   },
+   "holdout": {
+    "train_years": [
+     1998,
+     2019
+    ],
+    "test_years": [
+     2020,
+     2023
+    ],
+    "train_n": 22,
+    "test_n": 4,
+    "rmse": 5.339369728533736,
+    "rmse_share_of_range": 0.14238319276089964,
+    "rmse_share_of_mean": 0.056248298430695134,
+    "mean_signed_error": 5.263321904049771,
+    "rows": [
+     {
+      "year": 2020,
+      "actual": 96.1,
+      "predicted": 102.71202038513316,
+      "error": 6.612020385133164
+     },
+     {
+      "year": 2021,
+      "actual": 94.0,
+      "predicted": 99.5372777892691,
+      "error": 5.537277789269098
+     },
+     {
+      "year": 2022,
+      "actual": 96.7,
+      "predicted": 101.06625233591394,
+      "error": 4.366252335913941
+     },
+     {
+      "year": 2023,
+      "actual": 92.9,
+      "predicted": 97.43773710588289,
+      "error": 4.537737105882883
+     }
+    ]
+   },
+   "inputs": [
+    {
+     "key": "renewable energy",
+     "label": "Renewable energy consumption",
+     "short": "Renewables",
+     "unit": "billion Btu per year",
+     "unit_short": "bn Btu",
+     "min": 5192.0,
+     "max": 42079.0,
+     "default": 38474.0,
+     "step": 100.0
+    },
+    {
+     "key": "Coal Electricity Consumption",
+     "label": "Coal consumed for electricity",
+     "short": "Coal",
+     "unit": "short tons per year",
+     "unit_short": "short tons",
+     "min": 20001974.0,
+     "max": 28111658.0,
+     "default": 20001974.0,
+     "step": 10000.0
+    },
+    {
+     "key": "Natural Gas Electricity Consumption",
+     "label": "Natural gas consumed for electricity",
+     "short": "Natural gas",
+     "unit": "thousand cubic feet per year",
+     "unit_short": "k cu ft",
+     "min": 771921.56,
+     "max": 18693785.0,
+     "default": 18693785.0,
+     "step": 10000.0
+    },
+    {
+     "key": "PCE per capita",
+     "label": "Personal consumption expenditure",
+     "short": "Consumer spending",
+     "unit": "USD per person per year",
+     "unit_short": "USD",
+     "min": 20184.0,
+     "max": 56941.0,
+     "default": 56941.0,
+     "step": 100.0
+    },
+    {
+     "key": "Estimated Urban Population",
+     "label": "Urban population",
+     "short": "Urban population",
+     "unit": "people",
+     "unit_short": "people",
+     "min": 321789.3,
+     "max": 379745.5164,
+     "default": 362845.378182581,
+     "step": 100.0
+    }
+   ]
+  },
+  "ND": {
+   "code": "ND",
+   "name": "North Dakota",
+   "rank": 2,
+   "years": [
+    1998,
+    1999,
+    2000,
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023
+   ],
+   "co2": [
+    74.9,
+    76.9,
+    79.4,
+    80.7,
+    80.8,
+    80.4,
+    77.2,
+    81.6,
+    78.5,
+    80.7,
+    80.8,
+    77.6,
+    77.8,
+    78.7,
+    80.2,
+    78.6,
+    79.7,
+    76.1,
+    72.1,
+    74.6,
+    77.3,
+    74.3,
+    71.2,
+    72.2,
+    73.5,
+    68.8
+   ],
+   "features": {
+    "renewable energy": [
+     11747.0,
+     12906.0,
+     11741.0,
+     10274.0,
+     10973.0,
+     12222.0,
+     12481.0,
+     12453.0,
+     13204.0,
+     19483.0,
+     24181.0,
+     35500.0,
+     44774.0,
+     52448.0,
+     51187.0,
+     51321.0,
+     56212.0,
+     58245.0,
+     66369.0,
+     84388.0,
+     83350.0,
+     84943.0,
+     89719.0,
+     92654.0,
+     96025.0,
+     92154.0
+    ],
+    "Coal Electricity Consumption": [
+     24319908.0,
+     24579439.0,
+     25105883.0,
+     24992127.0,
+     25415842.0,
+     25319466.0,
+     24015610.6,
+     25415400.51,
+     24388028.25,
+     24731044.0,
+     24982510.0,
+     24691059.0,
+     23202324.0,
+     22129768.0,
+     22862441.0,
+     22365561.0,
+     22342245.0,
+     22738936.0,
+     21297030.0,
+     21654133.0,
+     22457155.0,
+     20681981.0,
+     20074444.0,
+     19910956.0,
+     20423354.0,
+     18645850.0
+    ],
+    "Natural Gas Electricity Consumption": [
+     8196.0,
+     17592.0,
+     22579.0,
+     25942.0,
+     115688.0,
+     43891.0,
+     43876.63,
+     38493.83,
+     35815.69,
+     76706.0,
+     606.0,
+     74689.0,
+     74842.0,
+     88546.0,
+     97102.0,
+     414341.0,
+     1983964.0,
+     6437023.0,
+     10372995.0,
+     6554192.0,
+     9615122.0,
+     13817310.0,
+     13792864.0,
+     14640592.0,
+     13851417.0,
+     26949269.0
+    ],
+    "PCE per capita": [
+     19162.0,
+     20177.0,
+     21446.0,
+     22705.0,
+     23806.0,
+     25103.0,
+     26461.0,
+     28053.0,
+     29670.0,
+     31270.0,
+     32599.0,
+     33073.0,
+     34381.0,
+     37295.0,
+     40344.0,
+     41839.0,
+     43293.0,
+     43351.0,
+     43092.0,
+     43075.0,
+     44506.0,
+     45836.0,
+     45047.0,
+     49367.0,
+     53141.0,
+     55780.0
+    ],
+    "Estimated Urban Population": [
+     340589.472,
+     338377.644,
+     358890.857,
+     357235.658,
+     356735.912,
+     357098.703,
+     360390.095,
+     361163.751,
+     363026.898,
+     364927.498,
+     367581.071,
+     371717.112,
+     404176.448,
+     410630.074,
+     420633.973,
+     433166.251,
+     442502.864,
+     452566.6629999999,
+     452912.286,
+     453296.245,
+     455277.138,
+     457470.676,
+     475274.9344841572,
+     474301.2940338393,
+     476185.7790882743,
+     481057.0296819126
+    ]
+   },
+   "model": {
+    "intercept": 26.13255560106442,
+    "coefficients": {
+     "renewable energy": -3.472968471835838e-05,
+     "Coal Electricity Consumption": 1.6649262871234592e-06,
+     "Natural Gas Electricity Consumption": -2.6009233985214147e-07,
+     "PCE per capita": 0.00023208509233682207,
+     "Estimated Urban Population": 1.7371610638381006e-05
+    },
+    "significant": [
+     "Coal Electricity Consumption",
+     "Natural Gas Electricity Consumption",
+     "PCE per capita"
+    ]
+   },
+   "fit": {
+    "n": 26,
+    "dof": 20,
+    "r_squared": 0.8734113576844846,
+    "adj_r_squared": 0.8417641971056058,
+    "residual_std_error": 1.3763716911690997,
+    "condition_number": 1522868009.5229862,
+    "terms": {
+     "intercept": {
+      "coefficient": 26.13255560106442,
+      "std_error": 17.48904842310163,
+      "t": 1.4942239834241304,
+      "p": 0.15072776463570514,
+      "significant": false
+     },
+     "renewable energy": {
+      "coefficient": -3.472968471835838e-05,
+      "std_error": 4.163491462414995e-05,
+      "t": -0.8341480949792496,
+      "p": 0.4140500462905602,
+      "significant": false
+     },
+     "Coal Electricity Consumption": {
+      "coefficient": 1.6649262871234592e-06,
+      "std_error": 4.93957771435529e-07,
+      "t": 3.3705842551781053,
+      "p": 0.003040649819515416,
+      "significant": true
+     },
+     "Natural Gas Electricity Consumption": {
+      "coefficient": -2.6009233985214147e-07,
+      "std_error": 8.21388680249539e-08,
+      "t": -3.1664953036986714,
+      "p": 0.004853138752213018,
+      "significant": true
+     },
+     "PCE per capita": {
+      "coefficient": 0.00023208509233682207,
+      "std_error": 0.00010119719216865642,
+      "t": 2.2933945830238684,
+      "p": 0.032793087211613094,
+      "significant": true
+     },
+     "Estimated Urban Population": {
+      "coefficient": 1.7371610638381006e-05,
+      "std_error": 3.1054634647078107e-05,
+      "t": 0.5593886656791012,
+      "p": 0.5821073956403162,
+      "significant": false
+     }
+    }
+   },
+   "holdout": {
+    "train_years": [
+     1998,
+     2019
+    ],
+    "test_years": [
+     2020,
+     2023
+    ],
+    "train_n": 22,
+    "test_n": 4,
+    "rmse": 1.3847711281782495,
+    "rmse_share_of_range": 0.10818524438892577,
+    "rmse_share_of_mean": 0.019387765182754632,
+    "mean_signed_error": -0.9334945507762811,
+    "rows": [
+     {
+      "year": 2020,
+      "actual": 71.2,
+      "predicted": 71.25195733741295,
+      "error": 0.051957337412943616
+     },
+     {
+      "year": 2021,
+      "actual": 72.2,
+      "predicted": 71.33365543610708,
+      "error": -0.8663445638929232
+     },
+     {
+      "year": 2022,
+      "actual": 73.5,
+      "predicted": 73.19239939668972,
+      "error": -0.30760060331027717
+     },
+     {
+      "year": 2023,
+      "actual": 68.8,
+      "predicted": 66.18800962668513,
+      "error": -2.6119903733148675
+     }
+    ]
+   },
+   "inputs": [
+    {
+     "key": "renewable energy",
+     "label": "Renewable energy consumption",
+     "short": "Renewables",
+     "unit": "billion Btu per year",
+     "unit_short": "bn Btu",
+     "min": 10274.0,
+     "max": 96025.0,
+     "default": 92154.0,
+     "step": 100.0
+    },
+    {
+     "key": "Coal Electricity Consumption",
+     "label": "Coal consumed for electricity",
+     "short": "Coal",
+     "unit": "short tons per year",
+     "unit_short": "short tons",
+     "min": 18645850.0,
+     "max": 25415842.0,
+     "default": 18645850.0,
+     "step": 10000.0
+    },
+    {
+     "key": "Natural Gas Electricity Consumption",
+     "label": "Natural gas consumed for electricity",
+     "short": "Natural gas",
+     "unit": "thousand cubic feet per year",
+     "unit_short": "k cu ft",
+     "min": 606.0,
+     "max": 26949269.0,
+     "default": 26949269.0,
+     "step": 100000.0
+    },
+    {
+     "key": "PCE per capita",
+     "label": "Personal consumption expenditure",
+     "short": "Consumer spending",
+     "unit": "USD per person per year",
+     "unit_short": "USD",
+     "min": 19162.0,
+     "max": 55780.0,
+     "default": 55780.0,
+     "step": 100.0
+    },
+    {
+     "key": "Estimated Urban Population",
+     "label": "Urban population",
+     "short": "Urban population",
+     "unit": "people",
+     "unit_short": "people",
+     "min": 338377.644,
+     "max": 481057.0296819126,
+     "default": 481057.0296819126,
+     "step": 100.0
+    }
+   ]
+  },
+  "AK": {
+   "code": "AK",
+   "name": "Alaska",
+   "rank": 3,
+   "years": [
+    1998,
+    1999,
+    2000,
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023
+   ],
+   "co2": [
+    68.4,
+    68.9,
+    69.8,
+    67.6,
+    66.9,
+    66.7,
+    70.5,
+    71.6,
+    67.5,
+    64.3,
+    57.0,
+    53.6,
+    52.2,
+    51.6,
+    49.8,
+    46.4,
+    46.3,
+    47.5,
+    45.0,
+    45.5,
+    46.9,
+    46.8,
+    49.2,
+    54.2,
+    57.4,
+    58.6
+   ],
+   "features": {
+    "renewable energy": [
+     6083.0,
+     5040.0,
+     5573.0,
+     8118.0,
+     8526.0,
+     8974.0,
+     8964.0,
+     6220.0,
+     5330.0,
+     5673.0,
+     5363.0,
+     7238.0,
+     7793.0,
+     7522.0,
+     7954.0,
+     8940.0,
+     11522.0,
+     13525.0,
+     14371.0,
+     13136.0,
+     13694.0,
+     12952.0,
+     9758.0,
+     9598.0,
+     10410.0,
+     10088.0
+    ],
+    "Coal Electricity Consumption": [
+     501440.0,
+     501934.0,
+     519645.0,
+     596193.0,
+     489044.0,
+     511702.0,
+     490410.86,
+     486653.82,
+     484228.87,
+     498186.0,
+     497114.0,
+     512959.0,
+     496500.0,
+     511662.0,
+     530213.0,
+     729018.0,
+     486750.0,
+     555683.0,
+     443129.0,
+     414067.0,
+     496101.0,
+     555952.0,
+     587878.0,
+     590542.0,
+     574635.0,
+     548669.0
+    ],
+    "Natural Gas Electricity Consumption": [
+     38705875.0,
+     39641872.0,
+     45327134.0,
+     43035823.0,
+     41364632.0,
+     36853144.0,
+     39181417.73,
+     40819339.31,
+     44481412.58,
+     41945565.0,
+     44153394.0,
+     38950168.0,
+     40676974.0,
+     42590510.0,
+     40382971.0,
+     34801335.0,
+     32851046.0,
+     31139120.0,
+     28498217.0,
+     29215559.0,
+     25668703.0,
+     24686921.0,
+     23109741.0,
+     25782213.0,
+     27094126.0,
+     27779714.0
+    ],
+    "PCE per capita": [
+     24110.0,
+     25423.0,
+     27243.0,
+     28599.0,
+     30252.0,
+     31704.0,
+     33138.0,
+     35017.0,
+     35947.0,
+     37656.0,
+     38911.0,
+     38871.0,
+     39968.0,
+     41449.0,
+     42455.0,
+     42915.0,
+     44251.0,
+     45019.0,
+     45704.0,
+     47075.0,
+     48904.0,
+     50180.0,
+     47839.0,
+     54127.0,
+     59239.0,
+     62900.0
+    ],
+    "Estimated Urban Population": [
+     375275.05,
+     377895.0,
+     411943.7279999999,
+     415716.384,
+     421373.0719999999,
+     425359.584,
+     432491.6159999999,
+     437516.5759999999,
+     442998.112,
+     446276.7999999999,
+     450970.4799999999,
+     458475.1199999999,
+     471370.9164,
+     476894.8098,
+     482480.7619999999,
+     486980.6851999999,
+     486616.915,
+     487511.4859999999,
+     490248.015,
+     489196.9765999999,
+     486319.1648,
+     484324.7005999999,
+     475724.2759169393,
+     476634.8157258542,
+     476649.0936130931,
+     477991.2150135466
+    ]
+   },
+   "model": {
+    "intercept": 156.60857577689654,
+    "coefficients": {
+     "renewable energy": 0.0003415838323810329,
+     "Coal Electricity Consumption": -1.0288727292639707e-06,
+     "Natural Gas Electricity Consumption": 6.771439707711398e-07,
+     "PCE per capita": 0.0006405422490874838,
+     "Estimated Urban Population": -0.000333817601651603
+    },
+    "significant": [
+     "Natural Gas Electricity Consumption",
+     "PCE per capita",
+     "Estimated Urban Population"
+    ]
+   },
+   "fit": {
+    "n": 26,
+    "dof": 20,
+    "r_squared": 0.8470719721848812,
+    "adj_r_squared": 0.8088399652311015,
+    "residual_std_error": 4.177790638102556,
+    "condition_number": 893772372.2587858,
+    "terms": {
+     "intercept": {
+      "coefficient": 156.60857577689654,
+      "std_error": 20.114407391673854,
+      "t": 7.78589061697751,
+      "p": 1.7679638490190203e-07,
+      "significant": true
+     },
+     "renewable energy": {
+      "coefficient": 0.0003415838323810329,
+      "std_error": 0.0006947584382475971,
+      "t": 0.49165841474716954,
+      "p": 0.6283134530501411,
+      "significant": false
+     },
+     "Coal Electricity Consumption": {
+      "coefficient": -1.0288727292639707e-06,
+      "std_error": 1.534841297985596e-05,
+      "t": -0.0670344699881555,
+      "p": 0.9472198738356407,
+      "significant": false
+     },
+     "Natural Gas Electricity Consumption": {
+      "coefficient": 6.771439707711398e-07,
+      "std_error": 3.153393658313436e-07,
+      "t": 2.14734994784414,
+      "p": 0.04420537375640024,
+      "significant": true
+     },
+     "PCE per capita": {
+      "coefficient": 0.0006405422490874838,
+      "std_error": 0.00023465036542281696,
+      "t": 2.729773072943183,
+      "p": 0.012907566542888835,
+      "significant": true
+     },
+     "Estimated Urban Population": {
+      "coefficient": -0.000333817601651603,
+      "std_error": 6.058314947908671e-05,
+      "t": -5.5100734201155515,
+      "p": 2.1529399185599814e-05,
+      "significant": true
+     }
+    }
+   },
+   "holdout": {
+    "train_years": [
+     1998,
+     2019
+    ],
+    "test_years": [
+     2020,
+     2023
+    ],
+    "train_n": 22,
+    "test_n": 4,
+    "rmse": 7.388383677601525,
+    "rmse_share_of_range": 0.2777587848722379,
+    "rmse_share_of_mean": 0.13470161672928943,
+    "mean_signed_error": -7.380964826688789,
+    "rows": [
+     {
+      "year": 2020,
+      "actual": 49.2,
+      "predicted": 42.220215859023824,
+      "error": -6.979784140976179
+     },
+     {
+      "year": 2021,
+      "actual": 54.2,
+      "predicted": 46.31418587249374,
+      "error": -7.885814127506265
+     },
+     {
+      "year": 2022,
+      "actual": 57.4,
+      "predicted": 49.978419417254386,
+      "error": -7.421580582745612
+     },
+     {
+      "year": 2023,
+      "actual": 58.6,
+      "predicted": 51.3633195444729,
+      "error": -7.2366804555271
+     }
+    ]
+   },
+   "inputs": [
+    {
+     "key": "renewable energy",
+     "label": "Renewable energy consumption",
+     "short": "Renewables",
+     "unit": "billion Btu per year",
+     "unit_short": "bn Btu",
+     "min": 5040.0,
+     "max": 14371.0,
+     "default": 10088.0,
+     "step": 10.0
+    },
+    {
+     "key": "Coal Electricity Consumption",
+     "label": "Coal consumed for electricity",
+     "short": "Coal",
+     "unit": "short tons per year",
+     "unit_short": "short tons",
+     "min": 414067.0,
+     "max": 729018.0,
+     "default": 548669.0,
+     "step": 1000.0
+    },
+    {
+     "key": "Natural Gas Electricity Consumption",
+     "label": "Natural gas consumed for electricity",
+     "short": "Natural gas",
+     "unit": "thousand cubic feet per year",
+     "unit_short": "k cu ft",
+     "min": 23109741.0,
+     "max": 45327134.0,
+     "default": 27779714.0,
+     "step": 100000.0
+    },
+    {
+     "key": "PCE per capita",
+     "label": "Personal consumption expenditure",
+     "short": "Consumer spending",
+     "unit": "USD per person per year",
+     "unit_short": "USD",
+     "min": 24110.0,
+     "max": 62900.0,
+     "default": 62900.0,
+     "step": 100.0
+    },
+    {
+     "key": "Estimated Urban Population",
+     "label": "Urban population",
+     "short": "Urban population",
+     "unit": "people",
+     "unit_short": "people",
+     "min": 375275.05,
+     "max": 490248.015,
+     "default": 477991.2150135466,
+     "step": 100.0
+    }
+   ]
+  }
+ }
+}

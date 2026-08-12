@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CO2 Emissions Explorer</title>
+<meta name="description" content="Why one national model cannot explain US state CO2 emissions. An interactive study of Wyoming, North Dakota and Alaska across 1,300 observations, 1998 to 2023.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f6f4ef" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f0e0c" media="(prefers-color-scheme: dark)">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="CO2 Emissions Explorer">
+<meta property="og:description" content="Per-capita CO2 varies almost twelve-fold across US states. One pooled model fails. Three state-specific models do not.">
+<meta property="og:image" content="assets/plant.webp">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%234f46e5'/%3E%3Cpath d='M6 23 L12 15 L18 18 L26 8' fill='none' stroke='%23fff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+
+<link rel="preload" href="fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="styles.css">
+
+<script>
+  // Resolve the theme before first paint so the page never flashes the wrong one.
+  // Order of authority: explicit URL parameter (used when the page is embedded),
+  // then a stored choice, then the operating system setting.
+  (function () {
+    try {
+      var url = new URL(window.location.href);
+      var requested = url.searchParams.get('theme');
+      var stored = localStorage.getItem('co2-theme');
+      var theme = requested || stored;
+      if (theme !== 'light' && theme !== 'dark') {
+        theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', theme);
+      if (url.searchParams.get('embed') === '1') {
+        document.documentElement.setAttribute('data-embed', '1');
+      }
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+  })();
+</script>
+</head>
+
+<body>
+<a class="skip-link" href="#predictor">Skip to the model</a>
+
+<header class="masthead">
+  <div class="shell masthead-inner">
+    <a class="wordmark" href="#top">
+      <span class="wordmark-mark" aria-hidden="true"></span>
+      <span>CO<sub>2</sub> Emissions Explorer</span>
+    </a>
+
+    <nav class="masthead-nav" aria-label="Sections">
+      <a href="#spread">The spread</a>
+      <a href="#cases">Case studies</a>
+      <a href="#predictor">Run the model</a>
+      <a href="#limits">Limits</a>
+    </nav>
+
+    <div class="masthead-actions">
+      <a class="ghost-link" href="https://github.com/Kopi-O-Kosong-Beng/DTP-MU-Project">Source</a>
+      <button type="button" id="theme-toggle" class="icon-button" aria-label="Switch to dark theme" aria-pressed="false">
+        <svg class="icon-sun" viewBox="0 0 256 256" aria-hidden="true" focusable="false">
+          <path d="M128 60a68 68 0 1 0 68 68 68.07 68.07 0 0 0-68-68Zm0 120a52 52 0 1 1 52-52 52.06 52.06 0 0 1-52 52Zm-8-144V16a8 8 0 0 1 16 0v20a8 8 0 0 1-16 0ZM43.1 54.42a8 8 0 1 1 11.32-11.32l14.14 14.14a8 8 0 0 1-11.31 11.32Zm-7.1 65.58H16a8 8 0 0 1 0 16h20a8 8 0 0 1 0-16Zm22.56 66.34a8 8 0 0 1 11.31 11.32L55.73 211.8a8 8 0 0 1-11.32-11.32ZM136 220v20a8 8 0 0 1-16 0v-20a8 8 0 0 1 16 0Zm76.9-19.52a8 8 0 1 1-11.32 11.32l-14.14-14.14a8 8 0 0 1 11.31-11.32ZM256 128a8 8 0 0 1-8 8h-20a8 8 0 0 1 0-16h20a8 8 0 0 1 8 8Zm-68.7-70.76 14.14-14.14a8 8 0 1 1 11.32 11.32L198.62 68.56a8 8 0 0 1-11.32-11.32Z"/>
+        </svg>
+        <svg class="icon-moon" viewBox="0 0 256 256" aria-hidden="true" focusable="false">
+          <path d="M233.54 142.23a8 8 0 0 0-8-2 88.08 88.08 0 0 1-109.8-109.8 8 8 0 0 0-10-10 104.84 104.84 0 0 0-52.91 37A104 104 0 0 0 136 224a103.09 103.09 0 0 0 62.52-20.88 104.84 104.84 0 0 0 37-52.91 8 8 0 0 0-1.98-7.98Zm-44.64 48.11A88 88 0 0 1 65.66 67.11a89 89 0 0 1 31.4-26A106 106 0 0 0 96 56a104.11 104.11 0 0 0 104 104 106 106 0 0 0 14.90-1.06 89 89 0 0 1-26 31.4Z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ── Hero ─────────────────────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="shell hero-grid">
+      <div class="hero-copy">
+        <h1 class="hero-title reveal">
+          No single model fits
+          <em>fifty states.</em>
+        </h1>
+        <p class="hero-lede reveal reveal-1">
+          Per-capita CO<sub>2</sub> runs almost twelve-fold apart across US states.
+          Pool them and the signal vanishes.
+        </p>
+        <div class="hero-actions reveal reveal-2">
+          <a class="button button-primary" href="#predictor">Run the model</a>
+          <a class="button button-quiet" href="#cases">See the three states</a>
+        </div>
+      </div>
+
+      <figure class="hero-figure reveal reveal-3">
+        <img src="assets/plant.webp" width="820" height="615" alt="Coal-fired power station cooling towers releasing steam at sunset." fetchpriority="high" decoding="async">
+      </figure>
+    </div>
+
+    <div class="shell">
+      <dl class="fact-strip reveal reveal-3">
+        <div class="fact">
+          <dt>Panel size</dt>
+          <dd><span data-fact="observations">1,300</span> observations</dd>
+          <dd class="fact-note">50 states, 26 years</dd>
+        </div>
+        <div class="fact">
+          <dt>Widest gap in <span data-fact="latestYear">2023</span></dt>
+          <dd><span data-fact="spreadRatio">11.9</span>-fold</dd>
+          <dd class="fact-note"><span data-fact="spreadLow">Maryland 7.8</span> to <span data-fact="spreadHigh">Wyoming 92.9</span></dd>
+        </div>
+        <div class="fact">
+          <dt>Best state model</dt>
+          <dd>adj R<sup>2</sup> <span data-fact="bestR2">0.98</span></dd>
+          <dd class="fact-note">Wyoming, five predictors</dd>
+        </div>
+        <div class="fact">
+          <dt>Weakest holdout</dt>
+          <dd><span data-fact="worstRmse">7.4</span> t error</dd>
+          <dd class="fact-note">Alaska, unseen 2020 to 2023</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ── The spread ───────────────────────────────────────────────────── -->
+  <section id="spread" class="band">
+    <div class="shell">
+      <p class="eyebrow reveal">Why pooling fails</p>
+      <h2 class="section-title reveal">Fifty states do not share one emissions problem</h2>
+      <p class="section-lede reveal">
+        Every state in <span data-fact="latestYear">2023</span>, ranked by per-capita emissions.
+        The three at the top are not outliers in degree. They are different in kind.
+      </p>
+
+      <figure class="panel chart-panel reveal">
+        <figcaption class="chart-head">
+          <h3>Per-capita CO<sub>2</sub> by state, <span data-fact="latestYear">2023</span></h3>
+          <p>Tonnes per person per year. Hover or focus any marker for the state and value.</p>
+        </figcaption>
+        <div class="legend legend-inline" id="legend-spread" role="list" aria-label="Series"></div>
+        <div id="chart-spread" class="chart" data-chart="spread"></div>
+        <figcaption class="chart-foot">
+          The median state sits at <strong><span data-fact="medianLatest">14.0</span> t</strong>.
+          Wyoming emits more than six times that.
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ── Case studies ─────────────────────────────────────────────────── -->
+  <section id="cases" class="band band-alt">
+    <div class="shell">
+      <h2 class="section-title reveal">Three states, three different stories</h2>
+      <p class="section-lede reveal">
+        Each of the top three emitters gets its own regression on the same five predictors.
+        The predictors that matter change completely between them.
+      </p>
+
+      <figure class="panel chart-panel reveal">
+        <figcaption class="chart-head">
+          <h3>Per-capita CO<sub>2</sub>, 1998 to 2023</h3>
+          <p>The national median is drawn for scale. All four lines share one axis.</p>
+        </figcaption>
+
+        <div class="chart-toolbar">
+          <div class="legend" id="legend-trend" role="list" aria-label="Series"></div>
+          <button type="button" class="chip" id="toggle-table" aria-expanded="false" aria-controls="trend-table">
+            Table view
+          </button>
+        </div>
+
+        <div id="chart-trend" class="chart chart-tall" data-chart="trend"></div>
+
+        <div id="trend-table" class="table-wrap" hidden>
+          <table class="data-table">
+            <caption>Per-capita CO<sub>2</sub> in tonnes per person per year</caption>
+            <thead>
+              <tr><th scope="col">Year</th><th scope="col">Wyoming</th><th scope="col">North Dakota</th><th scope="col">Alaska</th><th scope="col">National median</th></tr>
+            </thead>
+            <tbody id="trend-table-body"></tbody>
+          </table>
+        </div>
+      </figure>
+
+      <div class="case-grid" id="case-cards"></div>
+    </div>
+  </section>
+
+  <!-- ── Predictor ────────────────────────────────────────────────────── -->
+  <section id="predictor" class="band">
+    <div class="shell">
+      <p class="eyebrow reveal">The model, live</p>
+      <h2 class="section-title reveal">Move a driver, watch the forecast move</h2>
+      <p class="section-lede reveal">
+        Each slider is bounded by what the state actually recorded between 1998 and 2023.
+        A linear model says nothing reliable outside the range it was fitted on, so the controls stop where the data stops.
+      </p>
+
+      <div class="predictor reveal">
+        <form class="predictor-controls panel" id="predictor-form" novalidate>
+          <fieldset class="state-picker">
+            <legend>State model</legend>
+            <div class="segmented" id="state-picker" role="radiogroup" aria-label="State model"></div>
+          </fieldset>
+
+          <div id="slider-stack" class="slider-stack"></div>
+
+          <div class="predictor-form-foot">
+            <button type="button" class="button button-quiet" id="reset-inputs">Reset to 2023 actuals</button>
+          </div>
+        </form>
+
+        <div class="predictor-output">
+          <div class="panel result-card">
+            <p class="result-label">Predicted CO<sub>2</sub> per capita</p>
+            <p class="result-value"><span id="result-number">0.0</span><span class="result-unit">t</span></p>
+            <p class="result-context" id="result-context"></p>
+          </div>
+
+          <div class="panel contribution-card">
+            <div class="chart-head">
+              <h3>How the forecast is built</h3>
+              <p>Each driver's contribution is its coefficient times your input. They sum, with the intercept, to the value above.</p>
+            </div>
+            <div class="diverging-legend" aria-hidden="true">
+              <span class="dl-item"><span class="dl-swatch dl-down"></span>lowers</span>
+              <span class="dl-item"><span class="dl-swatch dl-up"></span>raises</span>
+            </div>
+            <div id="contributions" class="contributions"></div>
+            <p class="contribution-note" id="contribution-note"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Limits ───────────────────────────────────────────────────────── -->
+  <section id="limits" class="band band-alt">
+    <div class="shell">
+      <h2 class="section-title reveal">Where these models break</h2>
+      <p class="section-lede reveal">
+        Each model was refit on 1998 to 2019 alone, then asked to predict four years it had never seen.
+        Reporting only the fit statistic would hide what happens next.
+      </p>
+
+      <div class="legend holdout-legend reveal" id="legend-holdout" role="list" aria-label="Series"></div>
+      <div class="holdout-grid" id="holdout-grid"></div>
+
+      <div class="notes reveal">
+        <article class="note">
+          <h3>The fit statistic is not the whole story</h3>
+          <p>
+            Wyoming's model explains 98% of in-sample variance and still runs about
+            5 t per person high on every unseen year. A high adjusted R<sup>2</sup>
+            measures how well a model describes the past, not how well it forecasts.
+          </p>
+        </article>
+        <article class="note">
+          <h3>Alaska drifts in one direction</h3>
+          <p>
+            Every held-out Alaska year is under-predicted, and the gap widens as
+            emissions recover after 2020. A consistently signed error is structural:
+            something outside these five predictors is doing the work.
+          </p>
+        </article>
+        <article class="note">
+          <h3>Five predictors miss flaring</h3>
+          <p>
+            None of the five variables capture gas flared at the wellhead, which is
+            material in the Bakken and on the North Slope. The model cannot see a
+            source that never enters its inputs.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="shell footer-grid">
+    <div>
+      <p class="footer-title">CO<sub>2</sub> Emissions Explorer</p>
+      <p class="footer-note">
+        A state-level regression study built for SUTD Design Thinking Project III.
+        Every number on this page is computed from the panel in the repository by
+        <code>scripts/export_web_data.py</code>.
+      </p>
+    </div>
+
+    <div>
+      <h2 class="footer-heading">Data</h2>
+      <ul class="footer-list">
+        <li>US Energy Information Administration, State Energy Data System</li>
+        <li>US Bureau of Economic Analysis, personal consumption expenditure</li>
+        <li>US Census Bureau, urban population estimates</li>
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="footer-heading">Elsewhere</h2>
+      <ul class="footer-list">
+        <li><a href="https://github.com/Kopi-O-Kosong-Beng/DTP-MU-Project">Source repository</a></li>
+        <li><a href="https://youtu.be/_4QkfWFUnI4">Project video</a></li>
+        <li><a href="https://zhifeng-portfolio.vercel.app/projects/co2-modeling">Full case study</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<div class="chart-tooltip" id="tooltip" role="status" aria-live="polite" hidden></div>
+
+<script src="app.js" type="module"></script>
+</body>
+</html>
