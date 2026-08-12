@@ -130,9 +130,21 @@ Both run on every push through [GitHub Actions](.github/workflows/tests.yml), ag
 
 **The static explorer, on Vercel.** Live at [co2-emissions-explorer.vercel.app](https://co2-emissions-explorer.vercel.app), redeployed automatically on every push to `main`. `vercel.json` sets the framework to none, the build command to none and the output directory to `web/`, so there is nothing to configure in the dashboard.
 
-The page reads `?theme=light` or `?theme=dark` and accepts a `{type: "set-theme", theme}` postMessage, so it can be embedded in an iframe that follows the host page's theme. Adding `?embed=1` hides its own header and footer.
+**The Streamlit app, on Streamlit Community Cloud.** Live at [the Streamlit app](https://co2-emissions-explorer-bbpzsewjy4i3v9santbmhv.streamlit.app/), entry point `Home.py`. It fits the models live rather than reading exported coefficients. Community Cloud puts free apps to sleep after about a week of inactivity, so the first visit after a quiet spell spends a few seconds waking it up. That is why the static explorer, not this, is the link to hand someone.
 
-**The Streamlit app, on Streamlit Community Cloud.** Streamlit needs a long-running server holding a WebSocket per visitor, which Vercel's serverless model cannot provide, so it is hosted separately. At [share.streamlit.io](https://share.streamlit.io), point a new app at this repository with `Home.py` as the entry point. It is free for public repositories.
+Streamlit needs a long-running server holding a WebSocket per visitor, which Vercel's serverless model cannot provide, so the two apps are hosted on different services.
+
+### Embedding the predictor
+
+The explorer is designed to be framed inside a host page, which is how it appears on the [case study](https://zhifeng-portfolio.vercel.app/projects/co2-modeling):
+
+| Parameter | Effect |
+|---|---|
+| `?embed=1` | Hides the page's own header and footer |
+| `?view=predictor` | Renders only the live forecast panel, in a wide layout |
+| `?theme=light` or `?theme=dark` | Sets the starting theme |
+
+Two messages cross the frame boundary. The page posts `{type: "co2-explorer-height", height}` whenever its content height changes, so the host can size the frame and avoid an inner scrollbar, and it accepts `{type: "set-theme", theme}` so it follows the host's theme toggle.
 
 ## Data
 

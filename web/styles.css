@@ -242,11 +242,10 @@ sup { font-size: 0.68em; line-height: 0; vertical-align: 0.4em; }
   white-space: nowrap;
 }
 .wordmark-mark {
-  width: 20px;
-  height: 20px;
-  border-radius: 6px;
-  background: var(--accent);
+  width: 22px;
+  height: 22px;
   flex: none;
+  border-radius: 5px;
 }
 
 .masthead-nav {
@@ -304,6 +303,57 @@ sup { font-size: 0.68em; line-height: 0; vertical-align: 0.4em; }
 /* Embedded mode drops the chrome the host page already provides */
 :root[data-embed='1'] .masthead,
 :root[data-embed='1'] .site-footer { display: none; }
+
+/* ── Predictor-only view (?view=predictor) ─────────────────────────────────
+   Renders the live forecast panel by itself so a host page can iframe it
+   inline. Everything the host already says is hidden: the masthead, the
+   footer, the other sections, and this section's own heading and lede. */
+:root[data-view='predictor'] .masthead,
+:root[data-view='predictor'] .site-footer,
+:root[data-view='predictor'] .skip-link,
+:root[data-view='predictor'] main > section:not(#predictor) { display: none; }
+
+:root[data-view='predictor'] #predictor {
+  padding: 0;
+  background: transparent;
+  border: 0;
+}
+:root[data-view='predictor'] #predictor .eyebrow,
+:root[data-view='predictor'] #predictor .section-title,
+:root[data-view='predictor'] #predictor .section-lede { display: none; }
+
+:root[data-view='predictor'] .shell {
+  max-width: none;
+  padding-inline: 0;
+}
+:root[data-view='predictor'] .predictor { margin-top: 0; }
+
+/* Stacked in one column the panel runs past 1500px, which is a lot of
+   scrolling to drop into the middle of a case study. From 640px up the embed
+   goes full width instead: the five sliders sit two abreast, and the result
+   and the contribution bars share the row underneath. That trades the tall
+   narrow shape for a wide short one without dropping any control.
+   The attribute selector outranks the stacking rule in the responsive block. */
+@media (min-width: 640px) {
+  :root[data-view='predictor'] .predictor { grid-template-columns: 1fr; }
+
+  :root[data-view='predictor'] .slider-stack {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 28px;
+    row-gap: 18px;
+  }
+  /* Five is odd: the last one spans the row rather than leaving a gap */
+  :root[data-view='predictor'] .slider-row:last-child { grid-column: 1 / -1; }
+
+  :root[data-view='predictor'] .predictor-output {
+    grid-template-columns: 0.72fr 1fr;
+    align-items: start;
+  }
+}
+
+/* No entrance animation inside an iframe: the host controls when it scrolls
+   into view, and a stuck opacity:0 would leave the panel invisible. */
+:root[data-view='predictor'] .reveal { opacity: 1; transform: none; }
 
 /* ── Buttons ───────────────────────────────────────────────────────────── */
 .button {

@@ -24,6 +24,10 @@ const state = {
   charts: [],
 };
 
+// ?view=predictor renders the forecast panel alone for embedding elsewhere.
+const PREDICTOR_ONLY = document.documentElement.getAttribute('data-view') === 'predictor';
+const IS_FRAMED = window.parent !== window;
+
 /* ── Small helpers ────────────────────────────────────────────────────── */
 
 const el = (tag, attrs = {}, text) => {
@@ -1094,12 +1098,14 @@ const applyTheme = (theme) => {
   // Series colours are theme-specific, and anything that baked one into an
   // inline style is now stale, so charts and colour-carrying markup repaint.
   if (state.data) {
-    renderSpreadLegend();
-    renderTrendLegend();
-    renderCaseCards();
     renderStatePicker();
-    for (const node of document.querySelectorAll('#case-cards .reveal')) {
-      node.classList.add('is-visible');
+    if (!PREDICTOR_ONLY) {
+      renderSpreadLegend();
+      renderTrendLegend();
+      renderCaseCards();
+      for (const node of document.querySelectorAll('#case-cards .reveal')) {
+        node.classList.add('is-visible');
+      }
     }
   }
   redrawAllCharts();
@@ -1137,6 +1143,30 @@ const setupTheme = () => {
   });
 };
 
+/* ── Embedding ────────────────────────────────────────────────────────── */
+
+/**
+ * Report content height to the host page so an iframe can size itself.
+ *
+ * The height is posted only when it actually changes, so a host that resizes
+ * the frame in response cannot start a feedback loop with this observer.
+ */
+const setupHeightReporting = () => {
+  if (!IS_FRAMED) return;
+
+  let lastHeight = 0;
+  const post = () => {
+    const height = Math.ceil(document.body.getBoundingClientRect().height);
+    if (height === lastHeight || height === 0) return;
+    lastHeight = height;
+    window.parent.postMessage({ type: 'co2-explorer-height', height }, '*');
+  };
+
+  new ResizeObserver(post).observe(document.body);
+  window.addEventListener('load', post);
+  post();
+};
+
 /* ── Reveal on scroll ─────────────────────────────────────────────────── */
 
 const setupReveal = () => {
@@ -1164,7 +1194,17 @@ const setupReveal = () => {
 /* ── Boot ─────────────────────────────────────────────────────────────── */
 
 const showLoadError = (detail) => {
-  for (const id of ['chart-spread', 'chart-trend']) {
+  // In the embedded view the charts are hidden, so the message goes where the
+  // predictor would have been. Otherwise an iframe just renders blank.
+  const targets = PREDICTOR_ONLY ? ['predictor-error'] : ['chart-spread', 'chart-trend'];
+  if (PREDICTOR_ONLY) {
+    const panel = document.querySelector('.predictor');
+    if (panel) {
+      panel.replaceChildren(el('div', { id: 'predictor-error', class: 'panel' }));
+    }
+  }
+
+  for (const id of targets) {
     const host = document.getElementById(id);
     if (!host) continue;
     host.replaceChildren();
@@ -1183,6 +1223,7 @@ const showLoadError = (detail) => {
 };
 
 const showLoading = () => {
+  if (PREDICTOR_ONLY) return;
   for (const [id, height] of [['chart-spread', 190], ['chart-trend', 340]]) {
     const host = document.getElementById(id);
     if (host) host.appendChild(el('div', { class: 'skeleton', style: `height:${height}px` }));
@@ -1208,21 +1249,27 @@ const init = async () => {
   state.activeState = ORDER[0];
   resetInputsToLatest(state.activeState);
 
-  renderFacts();
-  renderSpreadLegend();
-  renderTrendLegend();
-  renderHoldoutLegend();
-  renderCaseCards();
-  renderHoldoutCards();
-  renderTrendTable();
+  // The predictor is the only thing rendered in the embedded view, so the
+  // narrative sections and their charts are skipped entirely rather than
+  // built into hidden containers.
+  if (!PREDICTOR_ONLY) {
+    renderFacts();
+    renderSpreadLegend();
+    renderTrendLegend();
+    renderHoldoutLegend();
+    renderCaseCards();
+    renderHoldoutCards();
+    renderTrendTable();
+
+    document.getElementById('chart-spread')?.replaceChildren();
+    document.getElementById('chart-trend')?.replaceChildren();
+    mountChart(document.getElementById('chart-spread'), drawSpread);
+    mountChart(document.getElementById('chart-trend'), drawTrend);
+  }
+
   renderStatePicker();
   renderSliders();
   updateResult();
-
-  document.getElementById('chart-spread')?.replaceChildren();
-  document.getElementById('chart-trend')?.replaceChildren();
-  mountChart(document.getElementById('chart-spread'), drawSpread);
-  mountChart(document.getElementById('chart-trend'), drawTrend);
 
   document.getElementById('reset-inputs')?.addEventListener('click', () => {
     resetInputsToLatest(state.activeState);
@@ -1231,6 +1278,7 @@ const init = async () => {
   });
 
   setupReveal();
+  setupHeightReporting();
 };
 
 init();
